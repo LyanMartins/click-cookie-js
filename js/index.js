@@ -7,40 +7,21 @@ document.addEventListener("DOMContentLoaded",function(){
 })
 var click = "";
 window.onload = function(){
-    console.log('Onload disparado');
-    var cookieRAW = document.cookie.replace(" ","");
-    console.log(cookieRAW);
-    var cookie = cookieRAW.split(";");
-    let verif = 0
-    console.log(cookie);
-    for (let i = 0; i < cookie.length; i++) {
-        
-        let temp = cookie[i].split('=');
-        console.log(temp[0]);
-        if (temp[0] == "click") {
-            console.log("ja tem");
-            click = temp[1];
-            verif = 1;
-        }
-        
-    }
-    if (verif == 0) {
-        console.log("criou");
-        click = createCookie();
-    }
 
-    document.getElementById("lblClick").innerHTML = click;
+    var click = getCookie("click");
+    document.getElementById("lblClick").innerHTML = click[1];
    
 }
 
 function addClick() {
-   var clickAtual = getCookie();
-   clickAtual = parseInt( clickAtual)+1;
+   var clickAtual = getCookie("click");
+   clickAtual = parseInt(clickAtual[1])+1;
    document.cookie = "click="+clickAtual+";";
+   console.log(getCoin());
    document.getElementById("lblClick").innerHTML = clickAtual;
 }
 
-function getCookie(){
+function getCookie(name){
     console.log('getCookie');
     var cookieRAW = document.cookie.replace(" ","");
     console.log(cookieRAW);
@@ -51,8 +32,9 @@ function getCookie(){
         
         let temp = cookie[i].split('=');
         console.log(temp[0]);
-        if (temp[0] == "click") {
-            return temp[1];
+        if (temp[0] == name) {
+            return temp;
+            verif = 1;
         }
         
     }
@@ -67,4 +49,10 @@ function createCookie(){
     document.cookie = "click=0"
     return 0;
     
+}
+
+function getCoin(){
+    var aleatorio = Math.random();
+    aleatorio = Math.floor(aleatorio * 100);
+    return aleatorio;
 }
