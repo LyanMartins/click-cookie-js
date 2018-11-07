@@ -1,13 +1,14 @@
 document.addEventListener("DOMContentLoaded",function(){
     console.log("Carregado");
     //alert(checkCookie());
-    
-    
+    //Verificando cookie
+    getCookie("click");
+    getCookie("coin");
     
 })
 var click = "";
 window.onload = function(){
-
+    console.log("Carregou!")
     var click = getCookie("click");
     var coin = getCookie("coin");
     document.getElementById("lblClick").innerHTML = click[1];
@@ -30,15 +31,16 @@ function getCookie(name){
     let verif = 0;
     console.log(cookie);
     for (let i = 0; i <= cookie.length; i++) {
-        
-        let temp = cookie[i].split('=');
-        console.log(temp[0]);
-        
-        if (temp[0] == name) {
-            return temp;
-            verif = 1;
+
+        if(!cookie[i] == ""){
+            let temp = cookie[i].split('=');
+            console.log(temp[0]);
+            
+            if (temp[0] == name) {
+                return temp;
+                verif = 1;
+            }
         }
-        
     }
     if (verif == 0) {
         console.log("criou");
