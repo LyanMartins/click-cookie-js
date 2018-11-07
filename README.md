@@ -1,0 +1,1 @@
+https://lyanmartins.github.io/click-cookie-js/
